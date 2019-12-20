@@ -168,7 +168,7 @@ def mypotion():
 	potionhealth==myhealthstart-myhealth
 	if potionhealth<20:
 		myhealth+=potionhealth
-	else
+	else:
 		myhealth+=20
 	mypotioncount-=1
 	print(mypokemon+' used a potion')
