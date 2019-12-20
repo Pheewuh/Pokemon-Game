@@ -15,6 +15,7 @@ mypotioncount=2
 endgame=0
 opponentpokemon='Pikachu'
 mypokemon='Charizard'
+potionhealth=0
 
 print("Mainmenu options:'play','edit'"); sleep(0.5)
 print("Gameplay options:'attack','potion','pokeball','flee','end'"); sleep(0.5)
@@ -140,7 +141,7 @@ def myattack():
         print(mypokemon+' used Lightning Strike')
     else:
         print('Invalid attack code')
-    print(opponentpokemon+'has HP left :')
+    print(opponentpokemon+' has HP left :')
     print(opponenthealth)
 
 def opponentattack():
@@ -165,6 +166,7 @@ def mypotion():
 	global mypotioncount
 	global myhealth
 	global myhealthstart
+	global potionhealth
 	potionhealth==myhealthstart-myhealth
 	if potionhealth<20:
 		myhealth+=potionhealth
@@ -173,11 +175,14 @@ def mypotion():
 	mypotioncount-=1
 	print(mypokemon+' used a potion')
 	print(mypokemon+' restored 20 hp')	
+	print(mypokemon+' HP is now:')
+	print(myhealth)
 
 def opponentpotion():
 	global opponenthealth
 	global opponenthealthstart
 	global opponentpotioncount
+	global opponentpotionhealth
 	opponentpotionhealth=opponenthealthstart-opponenthealth
 	if opponentpotionhealth<20:
 		opponenthealth+=opponentpotionhealth
@@ -186,6 +191,8 @@ def opponentpotion():
 	opponentpotioncount-=1
 	print(opponentpokemon+' used a potion')
 	print(opponentpokemon+' restored 20 hp')
+	print(opponentpokemon+' HP is now:')
+	print(opponenthealth)
 
 def pokeball():
 	global endgame
