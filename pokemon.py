@@ -3,7 +3,9 @@ from time import sleep
 import msvcrt as m
 
 myhealth=60
+myhealthstart=60
 opponenthealth=50
+opponenthealthstart=50
 attack1=10
 attack2=15
 attack3=20
@@ -11,13 +13,13 @@ attackturn=0
 opponentpotioncount=2
 mypotioncount=2
 endgame=0
-opponentpokemon='a'
-mypokemon='b'
+opponentpokemon='Pikachu'
+mypokemon='Charizard'
 
 print("Mainmenu options:'play','edit'"); sleep(0.5)
 print("Gameplay options:'attack','potion','pokeball','flee','end'"); sleep(0.5)
 print("Edit options:'attack1','attack2','attack3','myhealth','opponenthealth'"); sleep(0.5)
-print('Press enter to start')
+print('Press any key to start...')
 
 def gamestart():
 	m.getch()
@@ -59,6 +61,13 @@ def gameplay():
 			attackturn+=1
 
 def editmenu():
+	global attack1
+	global attack2
+	global attack3
+	global myhealth
+	global myhealthstart
+	global opponenthealth
+	global opponenthealthstart
 	attack1edit=input('Do you want to edit attack1?')
 	if attack1edit=='yes':
 		attack1=int(input('Attack1:'))
@@ -77,13 +86,16 @@ def editmenu():
 	myhealthedit=input('Do you want to edit your pokemon health?')
 	if myhealthedit=='yes':
 		myhealth=int(input('Myhealth:'))
+		myhealthstart=myhealth
 	else:
 		pass
 	opponenthealthedit=input('Do you want to edit opponent pokemon health?')
 	if opponenthealthedit=='yes':
 		opponenthealth=int(input('Opponenthealth:'))
+		opponenthealthstart=opponenthealth
 	else:
 		pass
+	gameplay()
 
 def opponentaction():
 	global opponentpotioncount
@@ -128,7 +140,8 @@ def myattack():
         print(mypokemon+' used Lightning Strike')
     else:
         print('Invalid attack code')
-    print(opponentpokemon+' has '+opponenthealth+' hp left')
+    print(opponentpokemon+'has HP left :')
+    print(opponenthealth)
 
 def opponentattack():
 	global opponentpokemon
@@ -145,19 +158,32 @@ def opponentattack():
 		print(opponentpokemon+' used Flamethrower')
 	else:
 	    pass
-	print(mypokemon+' has'+myhealth+' hp left')
+	print(mypokemon+' has HP left :')
+	print(myhealth)
 
 def mypotion():
 	global mypotioncount
 	global myhealth
-	myhealth+=20
+	global myhealthstart
+	potionhealth==myhealthstart-myhealth
+	if potionhealth<20:
+		myhealth+=potionhealth
+	else
+		myhealth+=20
 	mypotioncount-=1
 	print(mypokemon+' used a potion')
 	print(mypokemon+' restored 20 hp')	
 
 def opponentpotion():
 	global opponenthealth
-	opponenthealth+=20
+	global opponenthealthstart
+	global opponentpotioncount
+	opponentpotionhealth=opponenthealthstart-opponenthealth
+	if opponentpotionhealth<20:
+		opponenthealth+=opponentpotionhealth
+	else:
+		opponenthealth+=20
+	opponentpotioncount-=1
 	print(opponentpokemon+' used a potion')
 	print(opponentpokemon+' restored 20 hp')
 
