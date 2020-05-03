@@ -11,7 +11,7 @@ class mygame:
 		self.attnames=attnames
 
 	def myattack(self):
-		self.choice=int(input('1.Thunderbolt\n2.Lightning Tail\n3.Electro Ball'))
+		self.choice=int(input('1.Thunderbolt\n2.Lightning Tail\n3.Electro Ball(Input:1/2/3)\n'))
 		self.healths[1]-=self.attacks[self.choices.index(self.choice)]
 		print('Pikachu used '+self.attnames[self.choices.index(self.choice)])
 		print('Charizard has '+str(self.healths[1])+' HP left')
@@ -33,6 +33,7 @@ class mygame:
 			else:
 				self.healths[0]+=20
 			print('Pikachu used a potion')
+			print('Charizard healed 20 HP')
 			print('Pikachu has '+str(self.healths[0])+' HP left')
 		else:
 			print('No potions available')
@@ -47,6 +48,7 @@ class mygame:
 			else:
 				self.healths[1]+=20
 			print('Charizard used a potion')
+			print('Charizard healed 20 HP')
 			print('Charizard has '+str(self.healths[1])+' HP left')
 		else:
 			self.oppattack()
@@ -60,12 +62,15 @@ class mygame:
 
 	def pokeball(self):
 		if self.bag[2]>0:
+			print('You threw a pokeball')
 			if self.healths[1]<20:
 				self.chance=random.randint(1,5)
 				self.pokeballaction()
 			else:
 				self.chance=random.randint(1,10)
 				self.pokeballaction()
+		else:
+			print("You're out of pokeballs")
 		self.bag[2]-=1
 
 
@@ -76,7 +81,7 @@ class mygame:
 			self.opppotion()
 
 	def myactions(self):
-		self.choice=input('Attack,Potion,Pokeball,Flee')
+		self.choice=input('Attack,Potion,Pokeball,Flee(Input:attack/potion/pokeball/flee)\n')
 		if self.choice.lower()=='attack':
 			self.myattack()
 		elif self.choice.lower()=='potion':
@@ -99,4 +104,5 @@ class mygame:
 
 Game=mygame([60,50],[10,15,20],['Thunder Bolt','Lightning Tail','Electro Ball','Fire Ball','Flamethrower','Amber burst'],[1,2,3],[2,2,2])
 
+input('Press Enter to continue...')
 Game.gameplay()
